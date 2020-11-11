@@ -32,7 +32,7 @@ RUN bash /tmp/library-scripts/python-debian.sh "none" "/usr/local" "${PIPX_HOME}
 COPY instantclient-basic-linux.x64-12.2.0.1.0.zip /tmp/
 
 
-RUN cd  /tmp/ && unzip instantclient_12_1.zip -d  /opt/oracle/ && \
+RUN cd  /tmp/ && unzip instantclient-basic-linux.x64-12.2.0.1.0.zip  -d  /opt/oracle/ && \
     rm /tmp/instantclient-basic-linux.x64-12.2.0.1.0.zip && \
     ln /opt/oracle/instantclient_12_2/libclntsh.so.12.1 /usr/lib/libclntsh.so && \
     ln /opt/oracle/instantclient_12_2/libocci.so.12.1 /usr/lib/libocci.so && \
