@@ -26,3 +26,21 @@ ENV PATH=${PATH}:${PIPX_BIN_DIR}
 COPY .devcontainer/library-scripts/python-debian.sh /tmp/library-scripts/
 RUN bash /tmp/library-scripts/python-debian.sh "none" "/usr/local" "${PIPX_HOME}" "${USERNAME}" "false" \ 
     && apt-get clean -y && rm -rf /tmp/library-scripts
+
+
+# oracle支持
+COPY instantclient-basic-linux.x64-12.2.0.1.0.zip /tmp/
+
+
+RUN cd  /tmp/ && unzip instantclient_12_1.zip -d  /opt/oracle/ && \
+    rm /tmp/instantclient-basic-linux.x64-12.2.0.1.0.zip && \
+    ln /opt/oracle/instantclient_12_2/libclntsh.so.12.1 /usr/lib/libclntsh.so && \
+    ln /opt/oracle/instantclient_12_2/libocci.so.12.1 /usr/lib/libocci.so && \
+    ln /opt/oracle/instantclient_12_2/libociei.so /usr/lib/libociei.so && \
+    ln /opt/oracle/instantclient_12_2/libnnz12.so /usr/lib/libnnz12.so
+
+
+ENV ORACLE_BASE /opt/oracle/instantclient_12_2
+ENV LD_LIBRARY_PATH /opt/oracle/instantclient_12_2
+ENV TNS_ADMIN /opt/oracle/instantclient_12_2
+ENV ORACLE_HOME /opt/oracle/instantclient_12_2
