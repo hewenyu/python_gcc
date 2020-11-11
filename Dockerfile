@@ -37,7 +37,7 @@ RUN cd  /tmp/ && unzip instantclient-basic-linux.x64-12.2.0.1.0.zip  -d  /opt/or
     cd /opt/oracle/instantclient_12_2 && \
     ln -s libclntsh.so.12.1 libclntsh.so && \
     ln -s libocci.so.12.1 libocci.so && \
-    sh -c "echo /opt/oracle/instantclient_19_3 >  /etc/ld.so.conf.d/oracle-instantclient.conf" && \
+    sh -c "echo /opt/oracle/instantclient_12_2 >  /etc/ld.so.conf.d/oracle-instantclient.conf" && \
     ldconfig
 
 # ENV ORACLE_BASE /opt/oracle/instantclient_12_2
