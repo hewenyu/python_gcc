@@ -34,13 +34,13 @@ COPY instantclient-basic-linux.x64-12.2.0.1.0.zip /tmp/
 
 RUN cd  /tmp/ && unzip instantclient-basic-linux.x64-12.2.0.1.0.zip  -d  /opt/oracle/ && \
     rm /tmp/instantclient-basic-linux.x64-12.2.0.1.0.zip && \
-    ln /opt/oracle/instantclient_12_2/libclntsh.so.12.1 /usr/lib/libclntsh.so && \
-    ln /opt/oracle/instantclient_12_2/libocci.so.12.1 /usr/lib/libocci.so && \
-    ln /opt/oracle/instantclient_12_2/libociei.so /usr/lib/libociei.so && \
-    ln /opt/oracle/instantclient_12_2/libnnz12.so /usr/lib/libnnz12.so
+    cd /opt/oracle/instantclient_12_2 && \
+    ln -s libclntsh.so.12.1 libclntsh.so && \
+    ln -s libocci.so.12.1 libocci.so && \
+    sh -c "echo /opt/oracle/instantclient_19_3 >  /etc/ld.so.conf.d/oracle-instantclient.conf" && \
+    ldconfig
 
-
-ENV ORACLE_BASE /opt/oracle/instantclient_12_2
+# ENV ORACLE_BASE /opt/oracle/instantclient_12_2
 ENV LD_LIBRARY_PATH /opt/oracle/instantclient_12_2
-ENV TNS_ADMIN /opt/oracle/instantclient_12_2
-ENV ORACLE_HOME /opt/oracle/instantclient_12_2
+# ENV TNS_ADMIN /opt/oracle/instantclient_12_2
+# ENV ORACLE_HOME /opt/oracle/instantclient_12_2
