@@ -1,4 +1,4 @@
-ARG VARIANT=3.6
+ARG VARIANT=3
 FROM python:${VARIANT}
 
 # [Option] Install zsh
